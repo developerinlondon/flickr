@@ -27,28 +27,28 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
         <script type="text/javascript">
             $.getJSON(
-                "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?",
-                {
-                    tags: "bskyb",
-                    tagmode: "any",
-                    format: "json"
-                },
+                "/flickr",
+                {},
                 function(data) {
                     // console.log(data);
                     insert_images(data);
                 }
-            );
+            )
+            .fail(function(jqxhr, textStatus, error){
+                $('#my-carousel-container').html("<h3>No Images Available.</h3>")
+            });
 
             function insert_images(data) {
-                var images_arr = data.items; // array of images
+                var images_arr = data; // array of images
                 if (images_arr.length > 0){
                     for (var i = images_arr.length - 1; i >= 0; i--) {
-                        img_src = images_arr[i].media.m.replace("_m.jpg", ".jpg");
+                        img_src = images_arr[i].image_url;
                         img_html = "<li><img src=\"" + img_src + "\" /></li>";
                         $('ul.slider').append(img_html);
                     };
                 } else {
                     // handler no images loaded.
+                    $('#my-carousel-container').html("<h3>No Images Available.</h3>")
                 }
             }
 

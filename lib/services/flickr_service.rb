@@ -21,13 +21,13 @@ class FlickrService
       # get title, image_url from items
       flick_images = []
       items.each do |item|
-        title     = item["title"]
-        image_url = item["media"]["m"].gsub("_m.jpg", ".jpg")
+        title     = item["title"] # get image title
+        image_url = item["media"]["m"].gsub("_m.jpg", ".jpg") # get full-image url
         flick_images << FlickrImage.new(title, image_url).as_json
       end
 
       # return list of title and image URL
-      return flick_images.to_json
+      flick_images.to_json
     else
       raise ServiceError
     end
