@@ -1,0 +1,120 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Hello Sky</title>
+        <style type="text/css">
+            .slider {
+                margin: 40px 50px;
+                margin-top: 0px;
+                width: 600px;
+                height: 600px;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .slider li {
+                padding: 15px;
+                display: none;
+                position: absolute; 
+                top: 0; 
+                left: 0;
+                border: 5px solid #000;
+            }
+            .slide-navigation{
+                margin-left: 50px;
+            }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <script type="text/javascript">
+            $.getJSON(
+                "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?",
+                {
+                    tags: "bskyb",
+                    tagmode: "any",
+                    format: "json"
+                },
+                function(data) {
+                    // console.log(data);
+                    insert_images(data);
+                }
+            );
+
+            function insert_images(data) {
+                var images_arr = data.items; // array of images
+                if (images_arr.length > 0){
+                    for (var i = images_arr.length - 1; i >= 0; i--) {
+                        img_src = images_arr[i].media.m.replace("_m.jpg", ".jpg");
+                        img_html = "<li><img src=\"" + img_src + "\" /></li>";
+                        $('ul.slider').append(img_html);
+                    };
+                } else {
+                    // handler no images loaded.
+                }
+            }
+
+            $(document).ready(function(){
+                // settings
+                var $slider = $('.slider'); // class or id of carousel slider
+                var $slide = 'li'; // could also use 'img' if you're not using a ul
+                var $transition_time = 1000; // 1 second
+                var $time_between_slides = 4000; // 4 seconds
+
+                function slides(){
+                    return $slider.find($slide);
+                }
+
+                // scroll next slide
+                function next_slide(){
+                    var $i = $slider.find($slide + '.active').index();
+                    slides().eq($i).removeClass('active');
+                    slides().eq($i).fadeOut($transition_time);
+                    if (slides().length == $i + 1) $i = -1; // loop to start
+                    slides().eq($i + 1).fadeIn($transition_time);
+                    slides().eq($i + 1).addClass('active');
+                }
+
+                function previous_slide(){
+                    var $i = $slider.find($slide + '.active').index();
+                    slides().eq($i).removeClass('active');
+                    slides().eq($i).fadeOut($transition_time);
+                    // if (slides().length == $i + 1) $i = -1; // loop to start
+                    if ($i == 0) { $i = slides().length };
+                    slides().eq($i - 1).fadeIn($transition_time);
+                    slides().eq($i - 1).addClass('active');
+                }
+
+
+                slides().fadeOut();
+
+                // set active classes
+                slides().first().addClass('active');
+                slides().first().fadeIn($transition_time);
+
+                // auto scroll 
+                $interval = setInterval(
+                    next_slide
+                    , $transition_time +  $time_between_slides 
+                );
+                
+                // handle action: view next & previous slide
+                $('a.next-slide').click(
+                    next_slide
+                );
+                $('a.previous-slide').click(
+                    previous_slide
+                );
+            });
+        </script>
+    </head>
+<body>
+
+<div id="my-carousel-container">
+    <div class="slide-navigation">
+        <a href="#" class="previous-slide"><img src="arrow_left.png"></a>
+        <a href="#" class="next-slide"><img src="arrow_right.png"></a>
+    </div>
+    <ul class="slider">
+    </ul>
+</div>
+</body>
+</html>

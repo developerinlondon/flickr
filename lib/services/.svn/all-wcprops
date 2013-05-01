@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/repositories/mysky/!svn/ver/9192/recruitment/flickr_test/lib/services
+END
+service_error.rb
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/repositories/mysky/!svn/ver/9192/recruitment/flickr_test/lib/services/service_error.rb
+END
+flickr_service.rb
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/repositories/mysky/!svn/ver/9192/recruitment/flickr_test/lib/services/flickr_service.rb
+END

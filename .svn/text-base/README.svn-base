@@ -1,0 +1,62 @@
+
+Instructions
+This is a Sinatra Ruby app, which has been created on a linux machine and is best done in Linux/Mac environment due to the fact
+that rvm is not available on Windows environments. Once rvm has been installed run 'rvm requirements' and follow the instructions.
+
+
+Install rvm:
+
+    https://rvm.io/rvm/install/
+
+To install dependencies:
+
+    bundle install
+
+    if you get an exception saying that bundler is not installed execute:
+
+    gem install bundler
+
+To run unit tests:
+
+    rspec
+
+To start the app:
+
+    rackup
+
+What needs to be done?
+
+    STORY 1
+
+    As a flickr enthusiast I would like to see a carousel displaying a list of photos.
+
+    Acceptance criteria:
+
+    - Provide an implementation of a front-end-only JavaScript carousel, starting from the provided template, carousel.erb.
+    - The carousel has to display a list of images loaded form a Flickr feed of pictures tagged 'bskyb'.
+    - You are free to choose the kind of carousel you prefer (horizontal or vertical, animated or static...).
+    - The carousel should be fully functional in IE 8+ and latest Chrome, with JavaScript enabled.
+      Please do not use other JavaScript libraries or plug-ins, except jQuery.
+
+
+    STORY 2
+
+    Amend the existing flickr service to return a list of photo titles and images.
+
+    Acceptance criteria:
+
+    - Create a model class encapsulating the title and image only.
+      - Start by writing a test.
+    - Use json parser to process flicker response
+
+
+    STORY 3
+
+    Expose the service implemented in STORY 2 to feed data into your javascript carousel.
+
+    Acceptance criteria:
+
+    - Carousel created in STORY 1 should not be calling flickr directly.
+    - Implement '/flickr' resource to return json
+    - Ensure your carousel degrades gracefully, i.e. if no response, or an invalid response is returned, your carousel handles this appropriately.
+

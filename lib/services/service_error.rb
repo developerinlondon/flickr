@@ -1,0 +1,4 @@
+class ServiceError < StandardError
+
+end
+

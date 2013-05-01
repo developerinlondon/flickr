@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/repositories/mysky/!svn/ver/9201/recruitment/flickr_test
+END
+flickr_test.iml
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/repositories/mysky/!svn/ver/9192/recruitment/flickr_test/flickr_test.iml
+END
+flickr_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/repositories/mysky/!svn/ver/9192/recruitment/flickr_test/flickr_test.rb
+END
+Gemfile
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/repositories/mysky/!svn/ver/9192/recruitment/flickr_test/Gemfile
+END
+.rvmrc
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/repositories/mysky/!svn/ver/9192/recruitment/flickr_test/.rvmrc
+END
+Gemfile.lock
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/repositories/mysky/!svn/ver/9192/recruitment/flickr_test/Gemfile.lock
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/repositories/mysky/!svn/ver/9201/recruitment/flickr_test/README
+END
+.rspec
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/repositories/mysky/!svn/ver/9192/recruitment/flickr_test/.rspec
+END
+config.ru
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/repositories/mysky/!svn/ver/9192/recruitment/flickr_test/config.ru
+END
