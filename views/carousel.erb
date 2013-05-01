@@ -23,6 +23,15 @@
             .slide-navigation{
                 margin-left: 50px;
             }
+
+            img.loading{
+                z-index: 9999;
+                left: 300px;
+                top: 200px;
+                position: absolute;
+                width: 30px;
+                height: 30px;
+            }
         </style>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
         <script type="text/javascript">
@@ -32,6 +41,7 @@
                 function(data) {
                     // console.log(data);
                     insert_images(data);
+                    $('img.loading').hide();
                 }
             )
             .fail(function(jqxhr, textStatus, error){
@@ -113,6 +123,7 @@
         <a href="#" class="previous-slide"><img src="arrow_left.png"></a>
         <a href="#" class="next-slide"><img src="arrow_right.png"></a>
     </div>
+    <img class="loading" src="loading.gif">
     <ul class="slider">
     </ul>
 </div>
