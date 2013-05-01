@@ -17,11 +17,15 @@ describe "Flickr Service" do
   end
 
   it "returns as list of titles and images" do
-    response = File.read "#{File.dirname(__FILE__)}/responses/flickr_service/ok_response.json"
-    stub_request(:get, /.*/).to_return(:status => [200, "Ok"], :body => response)
+    response_file = File.read "#{File.dirname(__FILE__)}/responses/flickr_service/ok_response.json"
+    stub_request(:get, /.*/).to_return(:status => [200, "Ok"], :body => response_file)
 
+    json_string = @flickr_service.get_flickr_photos
+    json =  JSON.parse(json_string)
 
-    pending
+    # first title, image URL of response
+    json[0]["title"].should == "Sky Sports living for Sport"
+    json[0]["image_url"].should == "http://farm9.staticflickr.com/8225/8528882928_b5ba7f6fdb.jpg"
   end
 
 end

@@ -2,6 +2,7 @@ require "faraday"
 require "json"
 
 require_relative "service_error"
+require 'model/flickr_image'
 
 class FlickrService
 
@@ -11,7 +12,22 @@ class FlickrService
 
     resp = Faraday.get URL
     if 200 == resp.status
-      #resp.body
+
+      # get json string from response
+      json_string = resp.body.gsub("jsonFlickrFeed\(","").
+                              gsub(resp.body[resp.body.length-1],"")
+      items = JSON.parse(json_string)["items"]
+
+      # get title, image_url from items
+      flick_images = []
+      items.each do |item|
+        title     = item["title"]
+        image_url = item["media"]["m"].gsub("_m.jpg", ".jpg")
+        flick_images << FlickrImage.new(title, image_url).as_json
+      end
+
+      # return list of title and image URL
+      return flick_images.to_json
     else
       raise ServiceError
     end
